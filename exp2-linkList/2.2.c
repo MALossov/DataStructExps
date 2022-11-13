@@ -172,22 +172,21 @@ Node *InsertByOrder(Node *List, int data)
         {
             p = p->next;
         }
-        if (data < p->data && p == List)
+        if (data < p->data && p == List)    //对插入头节点进行特判
         {
             Node *q = (Node *)malloc(sizeof(Node));
             q->data = data;
             q->next = p;
             List = q;
-            printf("插入后：");
-            printList(List);
-            return List;
         }
-        // 中间插入
-        Node *q = (Node *)malloc(sizeof(Node));
-        q->data = data; // p->data;
-        q->next = p->next;
-        p->next = q;
-
+        else
+        {
+            // 中间插入
+            Node *q = (Node *)malloc(sizeof(Node));
+            q->data = data; // p->data;
+            q->next = p->next;
+            p->next = q;
+        }
         printf("插入后：");
         printList(List);
         return List;
