@@ -5,6 +5,9 @@
 //
 #include <stdio.h>
 
+#ifndef EXP1_SEQLIST_1_1_C
+#define EXP1_SEQLIST_1_1_C
+
 #define MAX_LENGTH 20
 #define DataTye int
 
@@ -89,10 +92,12 @@ void DeleteList(SeqList *L) {
     printList(L);
 }
 
+#ifdef HAVE_MAIN
+
 int main() {
     SeqList list;
     InitList(&list);
-    char ch, tmp;
+    char ch;
     while ((ch = (char) getchar())) {
         switch (ch) {
             case 'i':
@@ -115,4 +120,6 @@ int main() {
     }
 }
 
+#endif
+#endif
 #pragma clang diagnostic pop
