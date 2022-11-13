@@ -3,4 +3,4 @@ project(DataStructExps C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(DataStructExps exp1-seqList/1.1.c)
+add_executable(DataStructExps exp1-seqList/1.3.c)
