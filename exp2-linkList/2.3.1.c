@@ -9,7 +9,7 @@
 * 1. 删除单链表中全部的负数
 */
 
-#define HAVE_MAIN
+//#define HAVE_MAIN
 
 Node *DeleteNegative(Node *List) {
     Node *p = List;

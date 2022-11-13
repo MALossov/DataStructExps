@@ -6,7 +6,7 @@
 
 #include "2.1.c"
 
-//#define HAVE_MAIN
+#define HAVE_MAIN
 
 /**
 1. 创建一个单链表，其数据元素为整数，从键盘输入，输入0结束（注意0不放到链表内）；
@@ -173,6 +173,8 @@ int main() {
     printf("输入链表数据，以0结束：");
     head = InputList(head);
     char ch;
+    printf("列表为：");
+    printList(head);
     while ((ch = (char) getchar())) {
         switch (ch) {
             case 's':
