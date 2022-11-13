@@ -41,9 +41,11 @@ Node *InputList(Node *List) {
     Node *head = List;
     int data;
     data = 1;
+    int once = 0;
     while (data != 0) {
         scanf("%d", &data);
         if (data != 0) {
+            if (!once++) List = InitList(List);
             List = Add2Tail(List, data);
         }
     }
