@@ -16,7 +16,7 @@
  */
 Node *Add2Tail(Node *List, int data) {
     Node *p = List;
-    while (p->next != NULL) {
+    while (p != NULL && p->next != NULL) {
         p = p->next;
     }
     p->next = (Node *) malloc(sizeof(Node));
@@ -40,8 +40,7 @@ Node *InputList(Node *List) {
     // 从键盘输入，输入0结束（注意0不放到链表内）
     Node *head = List;
     int data;
-    scanf("%d", &data);
-    head->data = data;
+    data = 1;
     while (data != 0) {
         scanf("%d", &data);
         if (data != 0) {
@@ -112,6 +111,9 @@ Node *PrintBeforeAndAfter(Node *List, int data) {
 
 int CheckListOrder(Node *List) {
     Node *p = List;
+    if (p == NULL) {
+        return 1;
+    }
     while (p->next != NULL) {
         if (p->data > p->next->data) {
             return 0;
@@ -130,7 +132,7 @@ int CheckListOrder(Node *List) {
 Node *InsertByOrder(Node *List, int data) {
     Node *p = List;
     if (CheckListOrder(List)) {
-        while (p->next != NULL && p->next->data < data) {
+        while (p != NULL && p->next != NULL && p->next->data < data) {
             p = p->next;
         }
         // 头部特判
@@ -167,7 +169,6 @@ Node *InsertByOrder(Node *List, int data) {
 
 int main() {
     Node *head = NULL;
-    head = InitList(head);
     int n, data, pos;
     printf("输入链表数据，以0结束：");
     head = InputList(head);

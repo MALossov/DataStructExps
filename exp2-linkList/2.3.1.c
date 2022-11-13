@@ -31,7 +31,7 @@ Node *DeleteNegative(Node *List) {
 
 int main() {
     Node *head = NULL;
-    head = InitList(head);
+//    head = InitList(head);
     int n, data, pos;
     printf("输入链表数据，以0结束：");
     head = InputList(head);
