@@ -87,3 +87,5 @@ _deps
 .idea/
 cmake-build-debug/
 
+.vscode/
+build/

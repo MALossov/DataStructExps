@@ -9,7 +9,7 @@
 * 1. 删除单链表中全部的负数
 */
 
-//#define HAVE_MAIN
+#define HAVE_MAIN
 
 Node *DeleteNegative(Node *List) {
     Node *p = List;
@@ -35,6 +35,7 @@ int main() {
     int n, data, pos;
     printf("输入链表数据，以0结束：");
     head = InputList(head);
+    printList(head);
     char ch;
     while ((ch = (char) getchar())) {
         switch (ch) {
@@ -55,6 +56,8 @@ int main() {
                 head = InsertByOrder(head, data);
                 break;
             case 'D':
+                printf("删除前：");printList(head);
+                printf("删除后：");
                 head = DeleteNegative(head);
             default:
                 break;
