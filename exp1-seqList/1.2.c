@@ -21,19 +21,26 @@
 // 对列表进行排序,使用归并排序的算法，时间复杂度为O(nlogn)，从小到大排序
 void sortList(SeqList *L) {
     int i, j, k;
+    //以下2个for为一个简单的对数组进行二分分割的方法
     for (i = 1; i < L->length; i *= 2) {
         for (j = 0; j < L->length - i; j += 2 * i) {
+            //选出二分查找当中的头尾和中间
             int low = j, mid = j + i - 1, high = j + 2 * i - 1;
+            //限制尾节点在二分之中
             if (high >= L->length) {
                 high = L->length - 1;
             }
+            //根据当前查找范围重新开辟数组
             int *temp = (int *) malloc((high - low + 1) * sizeof(int));
             int start1 = low, end1 = mid;
             int start2 = mid + 1, end2 = high;
             int m = 0;
+            // 这一步是选最小值
             while (start1 <= end1 && start2 <= end2) {
                 temp[m++] = L->data[start1] < L->data[start2] ? L->data[start1++] : L->data[start2++];
             }
+            //归并排序的算法结束
+            //接下来3步是将排序后的值重新填入到原始数组
             while (start1 <= end1) {
                 temp[m++] = L->data[start1++];
             }
