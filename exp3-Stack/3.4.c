@@ -51,7 +51,7 @@ int dequeue(queue_type *queue) {
         queue->flag = 0;
 //        return queue->data[queue->front];
     }
-    int tmp = queue->data[queue->front];
+    int tmp = queue->data[queue->front + 1];
     queue->front = ((queue->front) + 1) % N;
     return tmp;
 }
@@ -63,17 +63,17 @@ void printQueue(queue_type *queue) {
     if (queue->flag == 1) {
         tmpFlg = 1;
     }
-    for (int i = queue->front; tmpFlg || i != queue->rear; i++, i %= N) {
+    for (int i = queue->front + 1; tmpFlg || i != queue->rear; i++, i %= N) {
         printf("%d ", queue->data[i]);
         tmpFlg = 0;
     }
+    printf("%d", queue->data[queue->rear]);
     putchar('\n');
 }
 
 /**
 5. 编写main函数，首先建立一个队列，
     1. 其中的数据元素为：`{2, 3, -4, 6, -5, 8, -9, 7, -10, 20}`；
-    2. 然后调用aa函数，并将aa函数调用前后队列的数据元素分别输出到屏幕上。
 */
 int main() {
     int a[] = {2, 3, -4, 6, -5, 8, -9, 7, -10, 20};

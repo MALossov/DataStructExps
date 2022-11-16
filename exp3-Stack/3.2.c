@@ -25,12 +25,12 @@ queue_type *InitQueue() {
 
 void enqueue(queue_type *queue, int data) {
     queue->data[queue->rear] = data;
-    queue->rear = ((queue->rear) + 1) % N;
+    queue->rear = ((queue->rear) + 1) % (N + 1);
 }
 
 int dequeue(queue_type *queue) {
     int tmp = queue->data[queue->front];
-    queue->front = ((queue->front) + 1) % N;
+    queue->front = ((queue->front) + 1) % (N + 1);
     return tmp;
 }
 
@@ -50,7 +50,7 @@ void aa(queue_type *q) {
 
 // 输出队列的函数
 void printQueue(queue_type *queue) {
-    for (int i = queue->front; i != queue->rear; i++, i %= 1) {
+    for (int i = queue->front; i != queue->rear; i++, i %= 1 + N) {
         printf("%d ", queue->data[i]);
     }
     putchar('\n');
