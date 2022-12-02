@@ -100,20 +100,24 @@ int main() {
         modifiedInput[modifiedLen++] = ' ';
         modifiedInput[modifiedLen++] = Pop(opStack);
     }
+    modifiedInput[modifiedLen++] = ' ';
     modifiedInput[modifiedLen] = '\0';
     printf("%s\n", modifiedInput);
     // 计算后缀表达式
     Stack *numStack = (Stack *) malloc(sizeof(Stack));
     InitStack(numStack);
     int tmpNum = 0;
+    int flag = 0;
     for (int i = 0; i < modifiedLen; i++) {
         if (modifiedInput[i] >= '0' && modifiedInput[i] <= '9') {
             tmpNum = tmpNum * 10 + modifiedInput[i] - '0';
+            flag = 1;
         } else {
             if (modifiedInput[i] == ' ') {
-                if (tmpNum != 0) {
+                if (flag) {
                     Push(numStack, tmpNum);
                     tmpNum = 0;
+                    flag = 0;
                 }
             } else {
                 int num2 = Pop(numStack);
