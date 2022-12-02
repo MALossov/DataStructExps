@@ -61,8 +61,10 @@ int main() {
         if (input[i] >= '0' && input[i] <= '9') {
             tmpNum = tmpNum * 10 + input[i] - '0';
         } else {
-            push(numStack, tmpNum);
-            tmpNum = 0;
+            if (input[i] != '(' && input[i] != ')') {
+                push(numStack, tmpNum);
+                tmpNum = 0;
+            }
             if (input[i] == '+' || input[i] == '-') {
                 while (!isEmpty(opStack) && top(opStack) != '(') {
                     int num2 = pop(numStack);
