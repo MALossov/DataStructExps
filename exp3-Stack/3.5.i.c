@@ -100,6 +100,7 @@ int main() {
         modifiedInput[modifiedLen++] = ' ';
         modifiedInput[modifiedLen++] = Pop(opStack);
     }
+    modifiedInput[modifiedLen++] = ' ';
     modifiedInput[modifiedLen] = '\0';
     printf("%s\n", modifiedInput);
     // 计算后缀表达式
@@ -111,9 +112,9 @@ int main() {
             tmpNum = tmpNum * 10 + modifiedInput[i] - '0';
         } else {
             if (modifiedInput[i] == ' ') {
-                if (tmpNum != 0) {
+                if (tmpNum != 0xfffffff) {
                     Push(numStack, tmpNum);
-                    tmpNum = 0;
+                    tmpNum = 0xfffffff;
                 }
             } else {
                 int num2 = Pop(numStack);
