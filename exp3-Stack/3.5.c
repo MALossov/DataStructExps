@@ -61,7 +61,7 @@ int main() {
         if (input[i] >= '0' && input[i] <= '9') {
             tmpNum = tmpNum * 10 + input[i] - '0';
         } else {
-            if (input[i] != '(' && input[i] != ')') {
+            if (input[i] != '(') {
                 push(numStack, tmpNum);
                 tmpNum = 0;
             }
@@ -118,7 +118,9 @@ int main() {
             }
         }
     }
-    push(numStack, tmpNum);
+    if (input[len - 1] >= '0' && input[len - 1] <= '9') {
+        push(numStack, tmpNum);
+    }
     while (!isEmpty(opStack)) {
         int num2 = pop(numStack);
         int num1 = pop(numStack);
