@@ -61,11 +61,29 @@ int main() {
         if (input[i] >= '0' && input[i] <= '9') {
             tmpNum = tmpNum * 10 + input[i] - '0';
         } else {
-            if (input[i] != '(') {
+            if ('(' != input[i] || input[i] != ')') {
                 push(numStack, tmpNum);
                 tmpNum = 0;
             }
-            if (input[i] == '+' || input[i] == '-') {
+            if (input[i] == '(') {
+                push(opStack, input[i]);
+            } else if (input[i] == ')') {
+                while (top(opStack) != '(') {
+                    int num2 = pop(numStack);
+                    int num1 = pop(numStack);
+                    int op = pop(opStack);
+                    if (op == '+') {
+                        push(numStack, num1 + num2);
+                    } else if (op == '-') {
+                        push(numStack, num1 - num2);
+                    } else if (op == '*') {
+                        push(numStack, num1 * num2);
+                    } else if (op == '/') {
+                        push(numStack, num1 / num2);
+                    }
+                }
+                pop(opStack);
+            } else if (input[i] == '+' || input[i] == '-') {
                 while (!isEmpty(opStack) && top(opStack) != '(') {
                     int num2 = pop(numStack);
                     int num1 = pop(numStack);
@@ -97,24 +115,6 @@ int main() {
                     }
                 }
                 push(opStack, input[i]);
-            } else if (input[i] == '(') {
-                push(opStack, input[i]);
-            } else if (input[i] == ')') {
-                while (top(opStack) != '(') {
-                    int num2 = pop(numStack);
-                    int num1 = pop(numStack);
-                    int op = pop(opStack);
-                    if (op == '+') {
-                        push(numStack, num1 + num2);
-                    } else if (op == '-') {
-                        push(numStack, num1 - num2);
-                    } else if (op == '*') {
-                        push(numStack, num1 * num2);
-                    } else if (op == '/') {
-                        push(numStack, num1 / num2);
-                    }
-                }
-                pop(opStack);
             }
         }
     }
