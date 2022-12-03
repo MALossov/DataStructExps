@@ -49,7 +49,14 @@ void Insert(HashTable *hashTable, Student student) {
             if (hashTable->data[i].name[0] == '\0') {
                 hashTable->data[i] = student;
                 hashTable->length++;
-                break;
+                return;
+            }
+        }
+        for (int i = 0; i < index; i++) {
+            if (hashTable->data[i].name[0] == '\0') {
+                hashTable->data[i] = student;
+                hashTable->length++;
+                return;
             }
         }
     }
@@ -95,18 +102,21 @@ HashTable *createRandomNames(int length) {
 }
 
 void printHash(HashTable *hashTable) {
+    int count = 0;
     for (int i = 0; i < MAX_Length; i++) {
         if (hashTable->data[i].name[0] != '\0') {
             printf("index: %d, name: %s, age: %d\n", i, hashTable->data[i].name, hashTable->data[i].age);
+            count++;
         }
     }
+    printf("count: %d\n", count);
 }
 
 int main() {
     srand((unsigned) time(NULL));
-    HashTable *hashTable = InitHashTable();
+    HashTable *hashTable;
     hashTable = createRandomNames(30);
-    printf("hashTable length: %d", hashTable->length);
+    printf("hashTable length: %d\n", hashTable->length);
     printHash(hashTable);
     char name[5];
     puts("请输入要查找的姓名");
