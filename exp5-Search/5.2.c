@@ -69,12 +69,16 @@ int Search(HashTable *hashTable, char *name) {
         return -1;
     } else {
         for (int i = index; i < MAX_Length; i++) {
-            if (hashTable->data[i].name[0] == '\0') {
-                return -1;
-            } else if (strcmp(hashTable->data[i].name, name) == 0) {
+            if (strcmp(hashTable->data[i].name, name) == 0) {
                 return i;
             }
         }
+        for (int i = 0; i < index; i++) {
+            if (strcmp(hashTable->data[i].name, name) == 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 
