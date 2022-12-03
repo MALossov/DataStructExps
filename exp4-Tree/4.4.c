@@ -6,6 +6,7 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
 typedef struct HuffNode {
     int weight;
@@ -78,27 +79,31 @@ void printHuffmanCode(HuffNode root) {
 }
 
 // 按照树状结构从第一层开始输出, 每一层多一个\t
-void printHuffmanTree(HuffNode root, int level) {
+void printHuffmanTree(HuffNode root, int level, char *code) {
+    char code1[100], code2[100];
+    strcpy(code1, code);
+    strcpy(code2, code);
     if (root.lchild == NULL && root.rchild == NULL) {
         for (int i = 0; i < level; i++) {
             printf("\t");
         }
-        printf("%d\n", root.weight);
+        printf("%d(%s)\n", root.weight, code);
         return;
     }
-    printHuffmanTree(*root.lchild, level + 1);
+    printHuffmanTree(*root.lchild, level + 1, strcat(code1, "1"));
     for (int i = 0; i < level; i++) {
         printf("\t");
     }
-    printf("%d\n", root.weight);
-    printHuffmanTree(*root.rchild, level + 1);
+    printf("%d(%s)\n", root.weight, code);
+    printHuffmanTree(*root.rchild, level + 1, strcat(code2, "0"));
 }
 
 int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    int arr[] = {89, 77, 53, 21, 9, 5, 3, 1};
     HuffNode root = createHuffmanTree(arr, 8);
     printHuffmanCode(root);
     putchar('\n');
-    printHuffmanTree(root, 0);
+    char code[] = "1";
+    printHuffmanTree(root, 0, code);
     return 0;
 }
