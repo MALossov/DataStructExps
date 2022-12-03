@@ -3,4 +3,5 @@ project(DataStructExps C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(DataStructExps exp3-Stack/3.5.i.c)
+#add_executable(DataStructExps exp5-Search/5.2.c)
+add_executable(DataStructExps exp4-Tree/4.4.c)
