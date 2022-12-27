@@ -9,54 +9,47 @@
 //#define HAVE_MAIN
 
 /**
-1. åˆ›å»ºä¸€ä¸ªå•é“¾è¡¨ï¼Œå…¶æ•°æ®å…ƒç´ ä¸ºæ•´æ•°ï¼Œä»é”®ç›˜è¾“å…¥ï¼Œè¾“å…¥0ç»“æŸï¼ˆæ³¨æ„0ä¸æ”¾åˆ°é“¾è¡¨å†…ï¼‰ï¼›
-2. ä»é”®ç›˜ä»»æ„è¾“å…¥ä¸€ä¸ªæ•´æ•°ï¼Œåœ¨å•é“¾è¡¨ä¸­æŸ¥è¯¢è¯¥æ•°ï¼Œå¦‚æœå•é“¾è¡¨ä¸­å·²ç»å­˜åœ¨è¿™ä¸ªæ•°ï¼Œå°±è°ƒç”¨åˆ é™¤å‡½æ•°ï¼Œåˆ é™¤è¯¥å…ƒç´ æ‰€åœ¨ç»“ç‚¹ï¼Œå¹¶å°†å•é“¾è¡¨åœ¨åˆ é™¤å‰åçš„æ•°æ®å…ƒç´ ä¾æ¬¡è¾“å‡ºåˆ°å±å¹•ä¸Šï¼›
-   å¦‚æœå•é“¾è¡¨ä¸­ä¸å­˜åœ¨è¿™ä¸ªæ•°ï¼Œå°±è°ƒç”¨æ’å…¥å‡½æ•°ï¼Œå°†è¿™ä¸ªæ•°æ’å…¥åˆ°å•é“¾è¡¨å°¾ï¼Œå¹¶å°†å•é“¾è¡¨åœ¨æ’å…¥å‰åçš„æ•°æ®å…ƒç´ ä¾æ¬¡è¾“å‡ºåˆ°å±å¹•ä¸Šã€‚
-3. åœ¨å·²ç»åˆ›å»ºçš„å…ƒç´ ä¸ºæ•´æ•°çš„é“¾è¡¨ä¸­ï¼Œä»é”®ç›˜è¾“å…¥ä¸€ä¸ªæ•´æ•°ï¼ŒæŒ‰ç…§å…ƒç´ å€¼å¤§å°ï¼Œå°†æ–°è¾“å…¥çš„å…ƒç´ æ’å…¥åˆ°é“¾è¡¨ä¸­ã€‚
+1. ´´½¨Ò»¸öµ¥Á´±í£¬ÆäÊı¾İÔªËØÎªÕûÊı£¬´Ó¼üÅÌÊäÈë£¬ÊäÈë0½áÊø£¨×¢Òâ0²»·Åµ½Á´±íÄÚ£©£»
+2. ´Ó¼üÅÌÈÎÒâÊäÈëÒ»¸öÕûÊı£¬ÔÚµ¥Á´±íÖĞ²éÑ¯¸ÃÊı£¬Èç¹ûµ¥Á´±íÖĞÒÑ¾­´æÔÚÕâ¸öÊı£¬¾Íµ÷ÓÃÉ¾³ıº¯Êı£¬É¾³ı¸ÃÔªËØËùÔÚ½áµã£¬²¢½«µ¥Á´±íÔÚÉ¾³ıÇ°ºóµÄÊı¾İÔªËØÒÀ´ÎÊä³öµ½ÆÁÄ»ÉÏ£»
+   Èç¹ûµ¥Á´±íÖĞ²»´æÔÚÕâ¸öÊı£¬¾Íµ÷ÓÃ²åÈëº¯Êı£¬½«Õâ¸öÊı²åÈëµ½µ¥Á´±íÎ²£¬²¢½«µ¥Á´±íÔÚ²åÈëÇ°ºóµÄÊı¾İÔªËØÒÀ´ÎÊä³öµ½ÆÁÄ»ÉÏ¡£
+3. ÔÚÒÑ¾­´´½¨µÄÔªËØÎªÕûÊıµÄÁ´±íÖĞ£¬´Ó¼üÅÌÊäÈëÒ»¸öÕûÊı£¬°´ÕÕÔªËØÖµ´óĞ¡£¬½«ĞÂÊäÈëµÄÔªËØ²åÈëµ½Á´±íÖĞ¡£
  */
-Node *Add2Tail(Node *List, int data)
-{
+Node *Add2Tail(Node *List, int data) {
     Node *p = List;
-    while (p != NULL && p->next != NULL)
-    {
+    while (p != NULL && p->next != NULL) {
         p = p->next;
     }
-    if (p == NULL)
-    {
-        p = (Node *)malloc(sizeof(Node));
+    if (p == NULL) {
+        p = (Node *) malloc(sizeof(Node));
         p->data = data;
         p->next = NULL;
         return p;
     }
-    p->next = (Node *)malloc(sizeof(Node));
+    p->next = (Node *) malloc(sizeof(Node));
     p->next->data = data;
     p->next->next = NULL;
     return List;
 }
 
-Node *InitList(Node *List)
-{
-    List = (Node *)malloc(sizeof(Node));
+Node *InitList(Node *List) {
+    List = (Node *) malloc(sizeof(Node));
     List->next = NULL;
     return List;
 }
 
 /**
- * ä»é”®ç›˜è¾“å…¥ï¼Œè¾“å…¥0ç»“æŸï¼ˆæ³¨æ„0ä¸æ”¾åˆ°é“¾è¡¨å†…ï¼‰
+ * ´Ó¼üÅÌÊäÈë£¬ÊäÈë0½áÊø£¨×¢Òâ0²»·Åµ½Á´±íÄÚ£©
  * @param List
- * @return List é“¾è¡¨å¤´æŒ‡é’ˆ
+ * @return List Á´±íÍ·Ö¸Õë
  */
-Node *InputList(Node *List)
-{
-    // ä»é”®ç›˜è¾“å…¥ï¼Œè¾“å…¥0ç»“æŸï¼ˆæ³¨æ„0ä¸æ”¾åˆ°é“¾è¡¨å†…ï¼‰
+Node *InputList(Node *List) {
+    // ´Ó¼üÅÌÊäÈë£¬ÊäÈë0½áÊø£¨×¢Òâ0²»·Åµ½Á´±íÄÚ£©
     Node *head = List;
     int data;
     data = 1;
-    while (data != 0)
-    {
+    while (data != 0) {
         scanf("%d", &data);
-        if (data != 0)
-        {
+        if (data != 0) {
             List = Add2Tail(List, data);
         }
     }
@@ -64,18 +57,15 @@ Node *InputList(Node *List)
 }
 
 /**
- * æŸ¥è¯¢è¯¥æ•°
- * @param List å¤´æŒ‡é’ˆ
- * @param data è¢«æŸ¥è¯¢çš„æ•°
- * @return æŒ‡é’ˆèŠ‚ç‚¹æˆ–NULL
+ * ²éÑ¯¸ÃÊı
+ * @param List Í·Ö¸Õë
+ * @param data ±»²éÑ¯µÄÊı
+ * @return Ö¸Õë½Úµã»òNULL
  */
-Node *SearchList(Node *List, int data)
-{
+Node *SearchList(Node *List, int data) {
     Node *p = List;
-    while (p != NULL)
-    {
-        if (p->data == data)
-        {
+    while (p != NULL) {
+        if (p->data == data) {
             return p;
         }
         p = p->next;
@@ -84,23 +74,20 @@ Node *SearchList(Node *List, int data)
 }
 
 /**
- * åœ¨å•é“¾è¡¨ä¸­æŸ¥è¯¢è¯¥æ•°ï¼Œå¦‚æœå•é“¾è¡¨ä¸­å·²ç»å­˜åœ¨è¿™ä¸ªæ•°ï¼Œå°±è°ƒç”¨åˆ é™¤å‡½æ•°ï¼Œåˆ é™¤è¯¥å…ƒç´ æ‰€åœ¨ç»“ç‚¹ï¼Œå¹¶å°†å•é“¾è¡¨åœ¨åˆ é™¤å‰åçš„æ•°æ®å…ƒç´ ä¾æ¬¡è¾“å‡ºåˆ°å±å¹•ä¸Šï¼›
- * å¦‚æœå•é“¾è¡¨ä¸­ä¸å­˜åœ¨è¿™ä¸ªæ•°ï¼Œå°±è°ƒç”¨æ’å…¥å‡½æ•°ï¼Œå°†è¿™ä¸ªæ•°æ’å…¥åˆ°å•é“¾è¡¨å°¾ï¼Œå¹¶å°†å•é“¾è¡¨åœ¨æ’å…¥å‰åçš„æ•°æ®å…ƒç´ ä¾æ¬¡è¾“å‡ºåˆ°å±å¹•ä¸Šã€‚
- * @param List å¤´æŒ‡é’ˆ
- * @param data æ’å…¥çš„æ•°
- * @return å¤´èŠ‚ç‚¹
+ * ÔÚµ¥Á´±íÖĞ²éÑ¯¸ÃÊı£¬Èç¹ûµ¥Á´±íÖĞÒÑ¾­´æÔÚÕâ¸öÊı£¬¾Íµ÷ÓÃÉ¾³ıº¯Êı£¬É¾³ı¸ÃÔªËØËùÔÚ½áµã£¬²¢½«µ¥Á´±íÔÚÉ¾³ıÇ°ºóµÄÊı¾İÔªËØÒÀ´ÎÊä³öµ½ÆÁÄ»ÉÏ£»
+ * Èç¹ûµ¥Á´±íÖĞ²»´æÔÚÕâ¸öÊı£¬¾Íµ÷ÓÃ²åÈëº¯Êı£¬½«Õâ¸öÊı²åÈëµ½µ¥Á´±íÎ²£¬²¢½«µ¥Á´±íÔÚ²åÈëÇ°ºóµÄÊı¾İÔªËØÒÀ´ÎÊä³öµ½ÆÁÄ»ÉÏ¡£
+ * @param List Í·Ö¸Õë
+ * @param data ²åÈëµÄÊı
+ * @return Í·½Úµã
  */
-Node *DeleteNode(Node *List, Node *p)
-{
+Node *DeleteNode(Node *List, Node *p) {
     Node *q = List;
-    if (List == p)
-    {
+    if (List == p) {
         List = List->next;
         free(p);
         return List;
     }
-    while (q->next != p)
-    {
+    while (q->next != p) {
         q = q->next;
     }
     q->next = p->next;
@@ -108,41 +95,33 @@ Node *DeleteNode(Node *List, Node *p)
     return List;
 }
 
-Node *PrintBeforeAndAfter(Node *List, int data)
-{
+Node *PrintBeforeAndAfter(Node *List, int data) {
     Node *p = SearchList(List, data);
-    if (p != NULL)
-    {
-        printf("æ‰¾åˆ°äº†%dï¼Œåˆ é™¤å®ƒ\n", data);
-        printf("åˆ é™¤å‰ï¼š");
+    if (p != NULL) {
+        printf("ÕÒµ½ÁË%d£¬É¾³ıËü\n", data);
+        printf("É¾³ıÇ°£º");
         printList(List);
         List = DeleteNode(List, p);
-        printf("åˆ é™¤åï¼š");
+        printf("É¾³ıºó£º");
         printList(List);
-    }
-    else
-    {
-        printf("æ²¡æ‰¾åˆ°%dï¼Œæ’å…¥å®ƒ\n", data);
-        printf("æ’å…¥å‰ï¼š");
+    } else {
+        printf("Ã»ÕÒµ½%d£¬²åÈëËü\n", data);
+        printf("²åÈëÇ°£º");
         printList(List);
         List = Add2Tail(List, data);
-        printf("æ’å…¥åï¼š");
+        printf("²åÈëºó£º");
         printList(List);
     }
     return List;
 }
 
-int CheckListOrder(Node *List)
-{
+int CheckListOrder(Node *List) {
     Node *p = List;
-    if (p == NULL)
-    {
+    if (p == NULL) {
         return 1;
     }
-    while (p->next != NULL)
-    {
-        if (p->data > p->next->data)
-        {
+    while (p->next != NULL) {
+        if (p->data > p->next->data) {
             return 0;
         }
         p = p->next;
@@ -151,90 +130,79 @@ int CheckListOrder(Node *List)
 }
 
 /**
- * æŒ‰ç…§å…ƒç´ å€¼å¤§å°ï¼Œå°†æ–°è¾“å…¥çš„å…ƒç´ æ’å…¥åˆ°é“¾è¡¨ä¸­
- * @param List å¤´æŒ‡é’ˆ
- * @param data æŸ¥è¯¢çš„æ•°
- * @return å¤´æŒ‡é’ˆæˆ–ç©ºï¼ˆæ— æ³•æ‰¾åˆ°ï¼‰
+ * °´ÕÕÔªËØÖµ´óĞ¡£¬½«ĞÂÊäÈëµÄÔªËØ²åÈëµ½Á´±íÖĞ
+ * @param List Í·Ö¸Õë
+ * @param data ²éÑ¯µÄÊı
+ * @return Í·Ö¸Õë»ò¿Õ£¨ÎŞ·¨ÕÒµ½£©
  */
-Node *InsertByOrder(Node *List, int data)
-{
+Node *InsertByOrder(Node *List, int data) {
     Node *p = List;
-    if (p == NULL)
-    {
+    if (p == NULL) {
         List = Add2Tail(List, data);
-        printf("ç©ºåˆ—è¡¨æ’å…¥åï¼š");
+        printf("¿ÕÁĞ±í²åÈëºó£º");
         printList(List);
         return List;
     }
-    if (CheckListOrder(List))
-    {
-        while (p != NULL && p->next != NULL && p->next->data < data)
-        {
+    if (CheckListOrder(List)) {
+        while (p != NULL && p->next != NULL && p->next->data < data) {
             p = p->next;
         }
-        if (data < p->data && p == List)    //å¯¹æ’å…¥å¤´èŠ‚ç‚¹è¿›è¡Œç‰¹åˆ¤
+        if (data < p->data && p == List)    //¶Ô²åÈëÍ·½Úµã½øĞĞÌØÅĞ
         {
-            Node *q = (Node *)malloc(sizeof(Node));
+            Node *q = (Node *) malloc(sizeof(Node));
             q->data = data;
             q->next = p;
             List = q;
-        }
-        else
-        {
-            // ä¸­é—´æ’å…¥
-            Node *q = (Node *)malloc(sizeof(Node));
+        } else {
+            // ÖĞ¼ä²åÈë
+            Node *q = (Node *) malloc(sizeof(Node));
             q->data = data; // p->data;
             q->next = p->next;
             p->next = q;
         }
-        printf("æ’å…¥åï¼š");
+        printf("²åÈëºó£º");
         printList(List);
         return List;
-    }
-    else
-    {
-        printf("é“¾è¡¨æ— åºï¼Œæ— æ³•æ’å…¥\n");
+    } else {
+        printf("Á´±íÎŞĞò£¬ÎŞ·¨²åÈë\n");
         return NULL;
     }
 }
 
+#define HAVE_MAIN
 #ifdef HAVE_MAIN
 
-int main()
-{
+int main() {
     Node *head = NULL;
     int n, data, pos;
-    printf("è¾“å…¥é“¾è¡¨æ•°æ®ï¼Œä»¥0ç»“æŸï¼š");
+    printf("ÊäÈëÁ´±íÊı¾İ£¬ÒÔ0½áÊø£º");
     head = InputList(head);
     char ch;
-    printf("åˆ—è¡¨ä¸ºï¼š");
+    printf("ÁĞ±íÎª£º");
     printList(head);
-    while ((ch = (char)getchar()))
-    {
-        switch (ch)
-        {
-        case 's':
-            printf("è¾“å…¥è¦æŸ¥è¯¢çš„æ•°ï¼š");
-            scanf("%d", &data);
-            head = PrintBeforeAndAfter(head, data);
-            break;
-        case 'q':
-            printf("é€€å‡ºç¨‹åºï¼\n");
-            return 0;
-        case 'p':
-            printList(head);
-            break;
-        case 'i':
-            printf("è¾“å…¥è¦æ’å…¥çš„æ•°ï¼š");
-            scanf("%d", &data);
-            head = InsertByOrder(head, data);
-            break;
-        default:
-            break;
+    while ((ch = (char) getchar())) {
+        switch (ch) {
+            case 's':
+                printf("ÊäÈëÒª²éÑ¯µÄÊı£º");
+                scanf("%d", &data);
+                head = PrintBeforeAndAfter(head, data);
+                break;
+            case 'q':
+                printf("ÍË³ö³ÌĞò£¡\n");
+                return 0;
+            case 'p':
+                printList(head);
+                break;
+            case 'i':
+                printf("ÊäÈëÒª²åÈëµÄÊı£º");
+                scanf("%d", &data);
+                head = InsertByOrder(head, data);
+                break;
+            default:
+                break;
         }
-        while (getchar() != '\n')
-            ;
-        printf("i:é¡ºåºæ’å…¥å…ƒç´ \ts:æœç´¢å…ƒç´ \tq:é€€å‡º\tp:æ‰“å°\n");
+        while (getchar() != '\n');
+        printf("i:Ë³Ğò²åÈëÔªËØ\ts:ËÑË÷ÔªËØ\tq:ÍË³ö\tp:´òÓ¡\n");
     }
     return 0;
 }

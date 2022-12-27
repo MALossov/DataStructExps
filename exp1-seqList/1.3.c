@@ -11,8 +11,8 @@
 #define HAVE_MAIN
 
 /**
- * 输入一组数，建立顺序表，编写算法将整个表的元素全部反序存放——即第一个元素放到最后……。
- * 本题的特点在优化，怎样在原表上，直接实现反序——即不额外使用一张新表
+ * ����һ����������˳�������д�㷨����������Ԫ��ȫ�������š�������һ��Ԫ�طŵ���󡭡���
+ * ������ص����Ż���������ԭ���ϣ�ֱ��ʵ�ַ��򡪡���������ʹ��һ���±�
  */
 
 void reverseList(SeqList *L) {
@@ -46,7 +46,7 @@ int main() {
                 DeleteList(&list);
                 break;
             case 'q':
-                printf("退出程序！\n");
+                printf("�˳�����\n");
                 return 0;
             case 'p':
                 printList(&list);
@@ -61,7 +61,7 @@ int main() {
                 break;
         }
         while (getchar() != '\n');
-        printf("i:插入元素\td:删除元素\tq:退出\tp:打印\tI:顺序插入\tS:排序表\tD:删除负数\tR:翻转表\n");
+        printf("i:����Ԫ��\td:ɾ��Ԫ��\tq:�˳�\tp:��ӡ\tI:˳�����\tS:�����\tD:ɾ������\tR:��ת��\n");
     }
 }
 

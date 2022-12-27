@@ -1,6 +1,6 @@
 //
 // Created by malossov on 22-11-13.
-// åˆ›å»ºä¸€ä¸ªåŒå‘é“¾è¡¨ï¼ŒæŒ‰ç…§å†’æ³¡æ’åºçš„æ€è·¯å¯¹è¿™ä¸ªåŒå‘é“¾è¡¨è¿›è¡Œæ’åºï¼Œæ‰“å°æ’åºç»“æœã€‚æ³¨æ„ï¼Œæœ¬ç®—æ³•åœ¨äº¤æ¢å…ƒç´ æ—¶æ˜¯å°†é“¾ç‚¹æ•´ä¸ªäº¤æ¢è€Œä¸æ˜¯å°†é“¾ç‚¹ä¸­çš„å…ƒç´ å€¼äº¤æ¢ã€‚
+// ´´½¨Ò»¸öË«ÏòÁ´±í£¬°´ÕÕÃ°ÅİÅÅĞòµÄË¼Â·¶ÔÕâ¸öË«ÏòÁ´±í½øĞĞÅÅĞò£¬´òÓ¡ÅÅĞò½á¹û¡£×¢Òâ£¬±¾Ëã·¨ÔÚ½»»»ÔªËØÊ±ÊÇ½«Á´µãÕû¸ö½»»»¶ø²»ÊÇ½«Á´µãÖĞµÄÔªËØÖµ½»»»¡£
 //
 
 #include "stdio.h"
@@ -14,6 +14,8 @@ typedef struct node {
 
 Node *createList(int n) {
     Node *head = NULL, *p = NULL, *q = NULL;
+    // ÓµÓĞ¶ÀÁ¢µÄÍ·½áµã
+
     int i;
     for (i = 0; i < n; i++) {
         p = (Node *) malloc(sizeof(Node));
@@ -21,7 +23,10 @@ Node *createList(int n) {
         p->prior = NULL;
         p->next = NULL;
         if (head == NULL) {
-            head = p;
+            head = (Node *) malloc(sizeof(Node));
+            head->prior = NULL;
+            p->prior = head;
+            head->next = p;
         } else {
             q->next = p;
             p->prior = q;
@@ -32,26 +37,89 @@ Node *createList(int n) {
 }
 
 void printList(Node *head) {
-    Node *p = head;
+    Node *p = head->next;
     while (p != NULL) {
         printf("%d ", p->data);
         p = p->next;
     }
-    putchar('\n');
+    printf("\n");
 }
+
+
+void swap(Node *left, Node *right) {
+    Node *temp;
+    if (right->next == NULL) //t½áµãÊÇ·ñÎªÎ²½áµã
+    {
+        if (left->next == right) //p,t½áµãÊÇ·ñÏàÁÚ
+        {
+            //ÓëÎ²½áµãÏàÁÚµÄ½»»»´ú
+            right->next = left;
+            right->prior = left->prior;
+            left->next = NULL;
+            left->prior->next = right;
+            left->prior = right;
+        } else {
+            //ÓëÎ²½áµã²»ÏàÁÚµÄ½»»»´ú
+            right->next = left->next;
+            right->prior->next = left;
+            temp = right->prior;
+            right->prior = left->prior;
+            left->next->prior = right;
+            left->next = NULL;
+            left->prior->next = right;
+            left->prior = temp;
+        }
+    } else {
+        if (left->next == right) //p,t½áµãÊÇ·ñÏàÁÚ
+        {
+            //ÏàÁÚµÄ½»»»´ú
+            right->next->prior = left;
+            temp = right->next;
+            right->next = left;
+            right->prior = left->prior;
+            left->next = temp;
+            left->prior->next = right;
+            left->prior = right;
+        } else {
+            //²»ÏàÁÚµÄ½»»»´ú
+            right->next->prior = left;
+            temp = right->next;
+            right->next = left->next;
+            left->next->prior = right;
+            left->next = temp;
+            right->prior->next = left;
+            temp = right->prior;
+            right->prior = left->prior;
+            left->prior->next = right;
+            left->prior = temp;
+        }
+    }
+}
+
 
 void sortList(Node *head) {
     Node *p = head, *q = NULL;
     int temp;
     while (p != NULL) {
+        Node *tmpQN;
         q = p->next;
         while (q != NULL) {
+            printf("p->data=%d,q->data=%d:", p->data, q->data);
             if (p->data > q->data) {
-                temp = p->data;
-                p->data = q->data;
-                q->data = temp;
+                Node *tmpQ = q;
+                tmpQN = q->next;
+                printf("BeforeSwap:");
+                printList(head);
+                swap(p, q);
+                printf("AfterSwap:");
+                printList(head);
+                q = tmpQN;
+                p = tmpQ;
+                continue;
             }
             q = q->next;
+            printf("Normal:");
+            printList(head);
         }
         p = p->next;
     }
@@ -59,7 +127,7 @@ void sortList(Node *head) {
 
 int main() {
     Node *head = NULL;
-    head = createList(5);
+    head = createList(4);
     sortList(head);
     printList(head);
     return 0;
